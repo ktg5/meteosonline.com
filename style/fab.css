@@ -1,0 +1,25 @@
+.fab a {
+    text-decoration: none;
+}
+
+#fab-after-first {
+    margin-left: 50px;
+}
+
+#fab-selection {
+    color: black;
+}
+
+
+@media (max-width: 555px) {
+    .fab {
+        font-size: 50px;
+    }
+}
+
+/* resize */
+@media (max-width: 590px) {
+    .fab {
+        font-size: 35px;
+    }
+}
