@@ -2,6 +2,10 @@
     scrollbar-color: rgba(255, 255, 255, 0.2) rgb(20, 20, 20);
 }
 
+:root {
+    --banner-filter: saturate(80%) blur(8px);
+}
+
 ::-webkit-scrollbar {
     background: rgb(20, 20, 20);
 }
@@ -26,10 +30,17 @@ h1, h2, h3 {
     margin: 0;
 }
 
-:root {
-    --highlight: rgb(149, 178, 255);
-    --banner: rgb(0 0 0 / 25%);
-    --banner-filter: saturate(80%) blur(8px);
+a {
+    transition: background .25s;
+    border-bottom: 2px solid white;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    background: white;
+    color: black;
 }
 
 #spacer {
@@ -40,55 +51,41 @@ h1, h2, h3 {
     margin-bottom: 5rem;
 }
 
+[gameplay-bg] {
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)),
+        url("../img/Meteos\ Online\ Gameplay.gif") no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+
 
 #top-tip {
-    background: linear-gradient(
-        90deg,
-        rgba(255, 0, 0, 1) 0%,
-        rgba(255, 154, 0, 1) 10%,
-        rgba(208, 222, 33, 1) 20%,
-        rgba(79, 220, 74, 1) 30%,
-        rgba(63, 218, 216, 1) 40%,
-        rgba(47, 201, 226, 1) 50%,
-        rgba(28, 127, 238, 1) 60%,
-        rgba(95, 21, 242, 1) 70%,
-        rgba(186, 12, 248, 1) 80%,
-        rgba(251, 7, 217, 1) 90%,
-        rgba(255, 0, 0, 1) 100%
-    );
+    background: var(--toptip-bg);
+    animation: moveBackground 5s linear infinite;
     position: fixed;
-    height: 10px;
+    height: var(--toptip-height);
     width: 100%;
     z-index: 1;
 }
 
 #top {
+    display: flex;
+    position: relative;
     backdrop-filter: var(--banner-filter);
     background: var(--banner);
-    position: relative;
-    margin-top: 10px;
+    top: 0;
+    margin-top: var(--toptip-height);
     padding: 0 60px;
-    display: flex;
-    height: 4rem;
+    height: var(--top-height);
+    opacity: 1;
     z-index: 1;
 }
 
-#top.hide {
-    transition: all .5s;
-    position: relative;
-    opacity: 1;
-    top: -75px;
-}
-
-#top.show {
-    transition: all .5s;
-    position: relative;
-    opacity: 1;
-    top: 0;
-}
-
 #top .logo {
-    height: 3.35rem;
+    height: 45px;
     padding: 5px 0;
 }
 
@@ -103,29 +100,88 @@ h1, h2, h3 {
 }
 
 #nav-button {
-    transition: all .25s;
-    text-decoration: none;
-    padding: 20px 10px;
+    display: flex;
     font-weight: bold;
-    display: block;
+    background: linear-gradient(
+        30deg,
+
+        transparent,
+        transparent,
+
+        #fff,
+        #fff
+    );
+    background-size: 600%;
     color: white;
+    text-decoration: none;
+    border: 0;
+    padding: 0 10px;
+    height: 100%;
+    align-items: center;
+    transition: all .35s;
 }
 
 #nav-button:hover {
-    background: rgba(128, 128, 128, 0.5);
+    background-position: 100% !important;
+    color: black;
+}
+
+#nav-button img {
+    filter: brightness(1);
+    transition: filter .35s;
+}
+
+#nav-button:hover img {
+    filter: brightness(0);
+}
+
+#nav-button .icon {
+    margin-right: var(--nav-button-margin);
+    width: var(--nav-button-size);
+    height: var(--nav-button-size);
+}
+
+#nav-button .icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#nav-button .txt {
+    white-space: nowrap;
+}
+
+#nav-button .redirect {
+    background: url('/img/redirect.png') no-repeat;
+    background-size: contain;
+    margin-left: var(--nav-button-margin);
+    width: 20px;
+    height: 20px;
+    filter: brightness(1);
+    transition: filter .35s;
+}
+
+#nav-button:hover .redirect {
+    filter: brightness(0);
 }
 
 
-#middle-container {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../img/Meteos\ Online\ Gameplay.gif") no-repeat center fixed;
-    background-size: cover;
+#multi-container {
+    display: flex;
+}
+
+
+
+#first-container {
+    position: relative;
+    flex-grow: 1;
+    flex-shrink: 0;
+    width: 60vw;
     height: 100vh;
 }
 
-#middle {
+#first {
     height: fit-content;
-    width: fit-content;
     text-align: center;
     position: absolute;
     margin: auto;
@@ -135,41 +191,32 @@ h1, h2, h3 {
     right: 0;
 }
 
-#title {
+#first .title {
     animation: moveIn cubic-bezier(0, 0, 0, 1.02) 1s;
 }
 
-#title .logo {
+#first .title .logo {
+    position: relative;
+    width: var(--index-first-logo-width);
     animation: moveSlow 5s;
     animation-iteration-count: infinite;
-    position: relative;
-    width: 25rem;
 }
 
-#links {
-    width: fit-content;
-    display: flex;
+#first .txt {
+    font-size: 18px;
+    text-shadow: var(--gameplay-object-shadow);
     margin: auto;
+    width: var(--index-first-txt-width);
 }
 
-#link-button {
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    transition: all .15s;
-    display: flow-root;
-    margin: 0 12px;
-    width: auto;
-}
-
-#link-button:hover {
-    color: var(--highlight);
-}
-
-#middle .fab {
+#first .txt .header {
     font-size: 24px;
+    font-weight: bolder;
 }
+
 
 #see-more {
+    display: none;
     backdrop-filter: var(--banner-filter);
     background: var(--banner);
     position: relative;
@@ -193,58 +240,43 @@ h1, h2, h3 {
 }
 
 
-#text-container {
+#second-ccontainer {
     background: black;
-    padding: 8rem 2rem 0 2rem;
-    height: 94.5vh;
+    padding: 8rem 2rem 0 2rem;    
     bottom: 0;
     top: 0;
 }
 
-#text {
+#second {
     margin: auto;
-    width: 50rem;
 }
 
-#text #about-desc p {
+#second #about-desc p {
     margin-block-start: .5em;
     margin-block-end: .5em;
 }
 
-#text #about-desc p:where(:first-child):not(:where([class~=not-prose] *)) {
+#second #about-desc p:where(:first-child):not(:where([class~=not-prose] *)) {
     margin-top: 0;
 }
 
-#text #about-desc p:where(:last-child):not(:where([class~=not-prose] *)) {
+#second #about-desc p:where(:last-child):not(:where([class~=not-prose] *)) {
     margin-bottom: 0;
 }
 
-#text #about-title {
+#second #about-title {
     margin-bottom: 10px;
     height: 70px;
 }
 
-#text #about-title-text {
+#second #about-title-text {
     width: calc(100% - 75px);
     margin-left: 75px;
     height: 100%;
 }
 
-#text #about-title-text h1 {
+#second #about-title-text h1 {
     padding: 15px 0;
-}
-
-#text a {
-    transition: background .25s;
-    border-bottom: 2px solid white;
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    font-weight: bold;
-}
-
-#text a:hover {
-    background: white;
-    color: black;
 }
 
 
@@ -262,21 +294,14 @@ h1, h2, h3 {
     100% {bottom: 0;}
 }
 
-/* fadeIn */
+/* fadeIn */    
 @keyframes fadeIn {
     0% {opacity:0;}
     100% {opacity:1;}
 }
 
-/* resize */
-@media (max-width: 880px) {
-    #text {
-        width: auto;
-    }
-}
-
-@media (max-width: 650px) {
-    #top {
-        padding: 0 10px;
-    }
+/* moving background */
+@keyframes moveBackground {
+    0% {background-position: 0;}
+    100% {background-position: 100vw;}
 }

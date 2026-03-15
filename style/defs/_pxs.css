@@ -1,0 +1,10 @@
+:root {
+    --toptip-height: 10px;
+    --top-height: 60px;
+    --top-full-height: calc(var(--toptip-height) + var(--top-height));
+    --nav-button-margin: 8px;
+    --nav-button-size: 30px;
+
+    --index-first-logo-width: 400px;
+    --index-first-txt-width: 70%;
+}

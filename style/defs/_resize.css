@@ -1,0 +1,27 @@
+/* turn off flex */
+@media (max-width: 1500px) {
+    #multi-container {
+        display: block;
+    }
+
+    #first-container {
+        width: 100%;
+    }
+
+    #second-ccontainer {
+        height: 90vh;
+    }
+}
+
+
+@media (max-width: 880px) {
+    #second {
+        width: auto;
+    }
+}
+
+@media (max-width: 650px) {
+    #top {
+        padding: 0 10px;
+    }
+}
